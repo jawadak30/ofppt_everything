@@ -1,0 +1,74 @@
+#ex 1
+n=int(input("saisir le nombre des elements des tableau: "))
+f=[]
+for i in range(0,n+1):
+    a=int(input("saisir le nombre: "))
+    f.append(a)
+#question 2
+    somme=sum(f)
+moyenne=somme/len(f)
+print(moyenne)
+d=0
+for i in f:
+    if i>moyenne:
+        d=d+1
+print("le nombre des element superieure a la moyenne est: ",d)
+#question3
+pair=[]
+impair=[]
+for i in f:
+    if i%2==0:
+        pair.append(i)
+        s=sum(pair)
+    else:
+        impair.append(i)
+        r=sum(impair)
+MoyP=s/len(pair)
+MoyI=r/len(impair)
+print("le moyenne des nombres pair est: ",MoyP)
+print("le moyenne des nombres impair est: ",MoyI)
+h=0
+for i in f:
+    if MoyP<MoyI:
+        min==MoyP
+        max==MoyI
+    else :
+        min==MoyI
+        max==MoyP
+    if i>min and i<max:
+        h=h+1
+print("le nombre des element compris entre moyenne pair et impair est: ",h)
+#ex 2:
+for i in range(1,N-1):
+    Min==T[i]
+    k==i
+    for in range(j=i+1,N):
+        if T[j]<Min :
+            Min==T[j]
+            k==j
+    X==Min
+    T[k]==T[i]
+    T[i]==X
+
+#ex 3:
+#question4:
+
+def clients():
+    v=int(input("donner le nombre des client: "))
+    for i in range(0,v+1):
+        #question 1:
+        nom=str(input("ecrire le nom de client: "))
+        codeArt=int(input("saisir le code Art: "))
+        PU=int(input("ecrire le PU de client: "))
+        qte=int(input("saisir le Qte de client: "))
+        #question 2:
+        montant=PU*qte
+        z=nom+" "+codeArt+" "+PU+"dhs"+" "+qte+" "+montant+"dhs"
+        return(z)
+clients(z)
+#questin 3:
+file=open("factures.txt","w")
+f.write(z)
+f.close()
+#question5:
+print(f)

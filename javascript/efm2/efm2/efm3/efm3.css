@@ -1,0 +1,25 @@
+form {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+form h1 {
+
+}
+form div {
+    display: flex;
+    align-items: center;
+}
+form div label {
+    padding-right: 40px;
+}
+form div input {
+    display: flex;
+}
+form .buttons {
+    display: flex;
+    align-items: center;
+}
+form .buttons button {
+    width: 50%;
+}

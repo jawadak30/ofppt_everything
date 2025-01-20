@@ -1,0 +1,48 @@
+body {
+
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid;
+}
+form .h1 {
+
+}
+form .h1 h1 {
+
+}
+
+
+
+form .Q1 {
+
+}
+form .Q1 label {
+
+}
+form .Q1 #a {
+
+}
+form .Q1 #a option {
+
+}
+form .range {
+
+}
+form .range label {
+
+}
+form .range input {
+
+}
+
+
+
+form .radio {
+
+}
+form .radio label {
+
+}

@@ -1,0 +1,209 @@
+/*start globzl rules*/
+
+html {
+    scroll-behavior: smooth;
+}
+ul {
+    text-decoration: none;
+}
+body {
+    font-family:Arial, Helvetica, sans-serif ;
+    position: relative;
+    background-color: #4d4d4d;
+}
+*{
+    -webkit-box-sizing:border-box ;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    margin: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+li {
+    list-style: none;
+}
+/*small*/
+@media (min-width:767px) {
+    .container {
+        width: 750px;
+    }
+}
+/*medium*/
+@media (min-width:992px) {
+    .container {
+        width: 970px;
+    }
+}
+/*large*/
+@media (min-width:1200px) {
+    .container {
+        width: 1300px;
+    }
+}
+/*end global rules*/
+.container {
+    position: relative;
+    padding-bottom: 10px;
+} 
+.container .box {
+    background-image: url(craiyon_203122_modern_background_for_a_cv.png);
+}
+.container .box .inside {
+    text-align: center;
+    padding: 106px;
+    background-color: #0000005e;
+}
+.container .box .inside h1 {
+    text-align: center;
+    color: #c2c2c2;
+}
+.container .box .inside p {
+    color: #c2c2c2;
+    text-align: center;
+}
+.container .box .icons {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.container .box .icons div {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0;
+}
+.container .box .icons div i {
+    color: white;
+
+}
+.container .box .icons div p {
+    color: white;
+}
+.aboutme {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    padding-right: 50px;
+    padding-left: 50px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #1c1c1c;
+}
+.aboutme img {
+    max-width: 250px;
+    padding: 0;
+    border: 5px solid #0083ff;
+    border-radius: 440px;
+}
+.aboutme p {
+    padding-left: 60px;
+    color: white;
+}
+.education {
+    position: relative;
+    padding: 20px 10px 20px 10px;
+    background-color: #5c5c5c;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.education .edu {
+    text-align: start;
+}
+.education .languages {
+    text-align: start;
+}
+.education .edu h1 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.education .languages h1 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.education .edu h3 {
+    color: antiquewhite;
+}
+.education .languages h3 {
+    color: antiquewhite;
+}
+.skills {
+    padding: 50px;
+    background-color: beige;
+}
+.skills h1 {
+    font-size: 47px;
+    text-align: center; 
+}
+.skills h2 {
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+.skills div {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.skills div .skill1 {
+    background-color: #777777;
+    text-align: center;
+    color: white;
+    font-weight: 900
+}
+.skills div .skill1 div {
+    color: red;
+}
+.skills div .skill2 {
+    background-color: #777777;
+    text-align: center;
+    color: white;
+    font-weight: 900
+}
+.skills div .skill3 {
+    background-color: #777777;
+    text-align: center;
+    color: white;
+    font-weight: 900
+}
+.skills div .skill4 {
+    background-color: #777777;
+    text-align: center;
+    color: white;
+    font-weight: 900
+}
+.skills div .skill5 {
+    background-color: #777777;
+    text-align: center;    
+    color: white;
+    font-weight: 900
+}
+.works {
+    background-color: #5a5a5a;
+    padding: 100px;
+    text-align: center;
+}
+.works h2 {
+    color: beige;
+    font-size: 37px;
+}
+.works h2 a {
+    text-decoration: none;
+    background-color: #afafaf;
+    color: blue;
+    border-radius: 211px;
+    padding: 10px;
+}
+.works h2 a:hover {
+    color: white;
+    background-color: black;
+}

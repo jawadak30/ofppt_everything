@@ -1,0 +1,47 @@
+body {
+    position: relative;
+}
+form {
+    padding-top: 100px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+form .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    background-color: blue;
+    border: 2px solid red;
+    border-radius: 10px;
+    box-shadow: -10px -15px 12px;
+}
+form .container .head {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+form .container div i {
+    padding: 5px;
+}
+form .container .inside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form .container .inside input {
+    margin: 15px;
+}
+form .container .inside .text {
+    height: 50px;
+}
+form .container .button {
+    padding: 20px 0 50px 0;
+}
+form .container .button a button {
+    border-radius: 10px;
+    padding: 5px;
+}

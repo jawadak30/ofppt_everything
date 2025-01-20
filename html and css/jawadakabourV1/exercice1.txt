@@ -1,0 +1,25 @@
+1)<!DOCTYPE html>: indique que la page est creé par des balise simplifié comme (header,nav,section,asideet,footer) et indique (html5)
+
+
+
+
+2)<meta charset="UTF-8">: indique que le site va affiché des caractère simple et n'est pas des caractère compliqué(codé)
+
+
+3)<div class="container-fluid col-md-(le nombre des colonne)">    </div>
+
+
+4)la différencz entre position relative et absolu que: la position absolu position aléatoiremment avec des position précises
+ et pour containner une balise (absolu(child)) de positionner dans la balise mère ,la balise mère doit ètre relative
+
+mère {
+position:relative;
+}
+mère child {
+position:absolute;
+}
+
+
+
+5)la bibliothèque bootstrap: est un framework de css , il est simplifié de l'utilisé et de coder la page web 
+

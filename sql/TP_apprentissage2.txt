@@ -1,0 +1,152 @@
+-------------------------------------------------------------2.3 Sous-Requêtes-----------------------------------
+
+
+--1. Afficher les numéros des clients qui commandent le produit de numéro 4.
+
+select distinct NUMCLI
+from COMMANDE
+where NUMCOM in (select NUMCOM
+from DETAIL
+where NUMPRO = 4);
+
+--2. Afficher les villes des clients qui commandent le produit de numéro 6.
+
+select distinct ville
+from CLIENT
+where NumCLI in (select NumCLI from COMMANDE
+where NumCOM in (select NumCOM from DETAIL where NumPRO = 6));
+
+
+--3. Quels sont les Casques qui font l'objet d'une commande ?
+
+select NUMPRO from PRODUIT
+where NOMPRO like '%Casques%' and NUMPRO in (select NUMPRO from DETAIL)
+
+
+--4. Dans quelles villes a-t-on commandé en Novembre 2015 ?
+
+select distinct ville from CLIENT
+where NumCLI in (select NumCLI from COMMANDE where DATECOM like '%2015-11%');
+
+--5 Afficher les commandes qui spécifient une quantité du produit 1 inférieure à celle 
+--que spécifie la commande 4 pour ce même produit.
+
+select * from COMMANDE
+where NumCOM in (select NumCOM from DETAIL where NumPRO = 1
+and QCOM < (select QCOM from DETAIL where NumPRO = 1 and NumCOM = 4))
+
+
+--6 Afficher les commandes qui ne spécifient pas le produit 3; celles pour lesquelles il n'existe aucun détail spécifiant le produit 3.
+
+select NumCOM, DATECOM, NumCLI from COMMANDE
+where NumCOM not in ( select NumCOM from DETAIL where NumPRO = 3)
+
+
+--7 Afficher les commandes qui spécifient des produits différents du produit 3.
+
+select NumCOM, DATECOM, NumCLI from COMMANDE
+where NumCOM in ( select NumCOM from DETAIL where NumPRO <> 3)
+
+
+----------------------------------------------------------------3.3. All et any
+
+
+--1 Afficher le numéro et le nom du produit dont le prix est inférieur à n'importe quel prix des produits de la commande numéro 2
+
+SELECT pr.numpro, pr.nompro FROM produit pr 
+WHERE pr.prix < ANY (
+    SELECT pr2.prix FROM produit pr2 
+    INNER JOIN detail de ON pr2.numpro = de.numpro WHERE de.numcom = 2
+) AND pr.numpro NOT IN ( 
+  SELECT numpro FROM detail WHERE numcom = 2 );
+
+SELECT pr.numpro, pr.nompro FROM produit pr 
+WHERE pr.prix < (
+    SELECT MAX(pr2.prix) FROM produit pr2 INNER JOIN detail de ON pr2.numpro = de.numpro
+    WHERE de.numcom = 2
+) AND pr.numpro NOT IN (
+    SELECT numpro FROM detail WHERE numcom = 2
+);
+
+
+--2 Afficher le numéro et le nom du produit dont le prix est inférieur à tous les prix des produits de la commande numéro 3
+
+SELECT pr.numpro, pr.nompro FROM produit pr 
+WHERE pr.prix < ALL (
+    SELECT pr2.prix FROM produit pr2 
+    INNER JOIN detail de ON pr2.numpro = de.numpro
+    WHERE de.numcom = 3
+)
+AND pr.numpro NOT IN (
+    SELECT numpro FROM detail 
+    WHERE numcom = 3
+);
+
+--------------------------------------------------------------3.1. Fonctions agrégatives
+
+--1. Afficher la valeur totale des stocks (compte non tenu des commandes actuelles).
+
+select sum(QSTOCK*PRIX) as TOTAL
+from PRODUIT
+
+--2 Dans combien de villes trouve-t-on des clients de catégorie D ?
+
+select count(distinct ville)
+from CLIENT
+where CATegorie = 'D'
+
+--3 Afficher le total, le minimum, la moyenne et le maximum des comptes des clients
+
+select sum(COMPTE) as somme,
+avg(COMPTE) as moyenne,
+min(COMPTE) as minimum,
+max(COMPTE) as maximum
+from CLIENT
+
+-------------------------------------------------------------3.2. Jointures
+
+--1. Afficher les numéros des clients qui commandent le produit de numéro 4.
+
+SELECT DISTINCT NUMCLI 
+FROM COMMANDE co 
+INNER JOIN DETAIL de ON co.numcom = de.numcom 
+WHERE NUMPRO = 4;
+
+
+
+--2. Afficher les villes des clients qui commandent le produit de numéro 6.
+
+SELECT DISTINCT ville 
+FROM CLIENT 
+INNER JOIN COMMANDE ON CLIENT.numcli = COMMANDE.numcli
+INNER JOIN DETAIL ON COMMANDE.numcom = DETAIL.numcom
+WHERE NumPRO = 6;
+
+
+
+--3. Quels sont les Casques qui font l'objet d'une commande ?
+
+SELECT DISTINCT NUMPRO 
+FROM PRODUIT 
+INNER JOIN DETAIL ON PRODUIT.numpro = DETAIL.numpro
+WHERE NOMPRO LIKE '%Casques%';
+
+
+--4. Dans quelles villes a-t-on commandé en Novembre 2015 ?
+
+SELECT DISTINCT ville 
+FROM CLIENT 
+INNER JOIN COMMANDE ON CLIENT.numcli = COMMANDE.numcli
+WHERE DATECOM LIKE '%2015-10%';
+
+
+--5 Afficher le nom et villes des clients triés par ordre alphabétique, qui ont achetés des Casques. 
+
+SELECT DISTINCT CONCAT(nomcli, '_', ville) AS Nom_ville 
+FROM CLIENT cl
+INNER JOIN COMMANDE co ON cl.numcli = co.numcli
+INNER JOIN DETAIL de ON co.numcom = de.numcom
+INNER JOIN PRODUIT pr ON de.numpro = pr.numpro
+WHERE pr.nompro LIKE '%Casques%'
+ORDER BY Nom_ville ASC;
+

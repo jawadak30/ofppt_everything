@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign up</title>
+</head>
+<body>
+    <header class="container">
+        <div class="logo">
+            GALAXY
+        </div>
+    </header> 
+    <form>
+        <div class="container">
+            <div class="box">
+                <h1>sign up </h1>
+                <div>
+                    <label for="aa">first name:</label>
+                    <input type="text" required id="aa">
+                </div>
+                <div>
+                    <label for="aaa">last name:</label>
+                    <input type="text" required id="aaa">
+                </div>
+                <div>
+                    <label>select trade role:</label>
+                    <div class="inside" >
+                        <label for="ja">buyer</label>
+                        <input type="radio" name="role" id="ja" required>
+                        <label for="jaa">seller</label>
+                        <input type="radio" name="role" id="jaa" required>
+                        <label for="jaaa">both</label>
+                        <input type="radio" name="role" id="jaaa" required>
+                    </div>
+                </div>
+                <div>
+                    <label for="aaaa">amail adresse:</label>
+                    <input type="text" placeholder="please set the email adresse" id="aaaa" required>
+                </div>
+                <div>
+                    <label for="aaaaa">login password:</label>
+                    <input min="8" type="text" placeholder="set password" id="aaaaa" required>
+                </div>
+                <div>
+                    <label for="jj">confirm password:</label>
+                    <input min="8" type="text" placeholder="set password" id="jj" required>
+                </div>
+                <div>
+                    <label for="jjj">phone number:</label>
+                    <input type="tel" name="" id="jjj" placeholder="enter phone number " required>
+                </div>
+                <div>
+                    <input class="sub" type="submit" value="submit">
+                    <input class="res" type="reset" value="reset">
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

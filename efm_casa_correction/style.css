@@ -1,0 +1,17 @@
+form {
+    display:flex;
+    flex-direction: column;
+    width: 500px;
+    margin-inline: auto;
+    gap:1rem;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table td,table th {
+    border:1px solid black;
+    text-align: center;
+}

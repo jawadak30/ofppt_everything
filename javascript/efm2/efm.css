@@ -1,0 +1,41 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container .box {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    padding: 10px;
+}
+.container .box label {
+
+}
+.container .box input {
+
+}
+.button {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.button input {
+    margin: 5px 10px;
+}
+.container .box1 {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    padding: 10px;
+}
+.container .box1 table {
+
+}
+.container .box1 table th {
+
+}
+.container .box1 table th td {
+
+}

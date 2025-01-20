@@ -1,0 +1,4 @@
+B001, Bureau principal
+001, 01/01/2023, Opérationnel, 1000
+002, 01/02/2023, Opérationnel, 500
+003, 01/03/2023, Non opérationnel, 50

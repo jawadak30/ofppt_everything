@@ -1,0 +1,191 @@
+----------------------------------------------Exercice1----------
+
+create database BD_ACHAT;
+use BD_ACHAT;
+show tables;
+
+
+
+create table CLIENT
+(NUMCLI int not null auto_increment,
+ NOMCLI  varchar(12) not null,
+ VILLE varchar(12) not null,
+ CATEGORIE char(1),
+ COMPTE decimal(9,2),
+ CONSTRAINT pk_cl_ncli primary key (NUMCLI));
+
+
+create table PRODUIT
+(NUMPRO int not null auto_increment,
+TYPEPRO varchar (20), 
+NOMPRO varchar(20),
+PRIX decimal(5) ,
+QSTOCK decimal(6,0) check(qstock between 0 and 1000),
+CONSTRAINT pk_pr_npro primary key (NUMPRO),
+CONSTRAINT ck_pr_prix check(prix>=0));
+
+
+create table COMMANDE
+ (NUMCOM int not null auto_increment,
+ NUMCLI int not null,
+ DATECOM date,
+ CONSTRAINT pk_cm_ncom primary key (NUMCOM));
+
+ 
+ Alter table commande
+ Add constraint fk_cm_ncli foreign key (NUMCLI) 
+ references  CLIENT (NUMCLI);
+
+
+ create table DETAIL
+ (NUMCOM int not null,
+ NUMPRO int not null,
+ QCOM decimal(4),
+ CONSTRAINT pk_dt_cmpro  primary key (NUMCOM,NUMPRO));
+ 
+ Alter table DETAIL
+ Add constraint fk_dt_ncom foreign key (NUMCOM) references COMMANDE (NUMCOM);
+
+ Alter table DETAIL 
+ Add constraint fk_dt_npro foreign key (NUMPRO) references PRODUIT(NUMPRO);
+
+ Alter table DETAIL 
+ Add constraint ck_dt_qc check (qcom between 0 and 1000);
+
+ 
+ 
+ ------------------Exercice2----------------
+ 
+ --1
+alter table PRODUIT
+add POIDS decimal(4,2);
+
+--2
+
+alter table CLIENT
+drop ville;
+
+--3
+
+alter table PRODUIT
+MODIFY nompro varchar(25);
+
+--4
+
+ALTER TABLE PRODUIT
+ALTER COLUMN QSTOCK SET DEFAULT 0;
+
+--5
+
+ALTER TABLE CLIENT 
+CHANGE categorie cat CHAR(1);
+
+--6
+
+ALTER TABLE client
+RENAME To customer;
+
+
+Reinitialisation:
+----------------
+
+alter table PRODUIT
+drop POIDS;
+
+alter table customer
+add ville varchar(12) not null;
+
+ALTER TABLE customer
+CHANGE cat categorie CHAR(1);
+
+ALTER TABLE customer
+RENAME To client;
+
+
+
+
+
+------------------------------------------Exercice4
+
+
+ insert into CLIENT (NOMCLI, VILLE , CATEGORIE, COMPTE) values 
+                    ('AMINE'    ,'RABAT' ,'A',11250.00),
+                    ('DRISS'    ,'CASABLANCA'    ,'A',12300),
+                    ('IMANE'   ,'MARRAKECH'   ,'D',20),
+                    ('YASSINE'  ,'TANGER' ,'C',100),
+                    ('ZINEB'    ,'CASABLANCA'    ,'B',1000),
+                    ('MAROUANE' ,'KENITRA'    ,'D',15),
+                    ('HOUDA'    ,'RABAT' ,'A',15000),
+                    ('ALI'      ,'TANGER' ,NULL,0),
+                    ('IMANE'    ,'RABAT' ,'B',1500),
+                    ('DRISS'    ,'CASABLANCA' ,NULL,0);
+					
+
+
+ insert into PRODUIT (TYPEPRO,NOMPRO,PRIX,QSTOCK) values 
+  ('Audio', 'Casques-micros',  750,  35),
+  ('Informatique','Ordinateurs fixes', 5400,960),
+  ('Mobilité','Tablettes',105, 830),
+  ('Informatique','PC portables', 9500, 134),
+  ('Audio', 'Casques Hi-Fi ', 1500, 82),
+  ('Informatique', 'Disques durs', 985,129),
+  ('Mobilité','Smartphones', 220, 540),
+  ('Loisirs','Jeux PS4', 3500, 10);
+  
+
+ insert into COMMANDE  (NUMCLI,DATECOM) values
+ (3,'2015-01-01'),
+ (9,'2015-05-10'),
+ (3,'2015-07-19'),
+ (1,'2015-09-17'),
+ (3,'2015-10-27'),
+ (6,'2015-10-09'),
+ (2,'2015-01-01'),
+ (8,'2015-05-10'),
+ (5,'2015-07-19'),
+ (2,'2015-09-17'),
+ (6,'2015-10-27'),
+ (10,'2015-10-09');
+ 
+ insert into DETAIL (NUMCOM,NUMPRO,QCOM) values 
+ (1,1,33),
+ (2,2,25),
+ (2,3,70),
+ (3,2,40),
+ (4,1,133),
+ (4,4,20),
+ (5,2,10),
+ (5,5,60),
+ (5,1,26),
+ (6,4,157),
+ (7,2,75),
+ (7,6,920),
+ (7,1,18),
+ (7,4,2);
+
+ 
+ --------------------------Exercice5----------------------------
+ 
+ 
+ 1- update produit set nompro='Clé USB', Prix=100 where numpro=6;
+
+2- update client set compte=compte+1000 where categorie='A';
+
+3- delete from client where nomcli='Houda';
+
+4- update client set compte=0.9*compte where compte>5000;
+
+
+
+
+
+
+SELECT Livre.* FROM Livre
+JOIN Emprunt ON Livre.ISBN = Emprunt.ISBN
+WHERE Emprunt.IDAdherent = 1;
+
+
+
+
+
+

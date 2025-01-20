@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="fem2.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <fieldset>
+            <div class="box">
+                <h1>notes des stagaires</h1>
+                <div>
+                    <label for="id">id:</label>
+                    <input type="text" id="id">
+                    <input type="button" value="lire">
+                </div>
+                <div>
+                    <label for="nom">nom:</label>
+                    <input type="text" id="nom">
+                </div>
+                <div id="filiere">
+                    <div>filiere</div>
+                    <input type="radio" name="filiere" id="radio" value="td1" class="h">
+                    <label for="">td1</label>
+                    <input type="radio" name="filiere" id="radio" value="tdm">
+                    <label for="">tdm</label>
+                    <input type="radio" name="filiere" id="radio" value="trj">
+                    <label for="">trj</label>
+                </div>
+                <div>
+                    <label for="">note: </label>
+                    <input type="number" id="note">
+                </div>
+                <button onclick="ajouter_note()">ajouter la note</button>
+            </div>
+            <div class="box1">
+                <h1>liste des notes: </h1>
+                <table border="1" id="jawad">
+                    <tr >
+                        <td>id</td>
+                        <td>nom</td>
+                        <td>note</td>
+                        <td>filiere</td>
+                        <td>gestion</td>
+                    </tr>
+                </table>
+            </div>
+        </fieldset>
+    </form>
+    <script src="efm2.js"></script>
+</body>
+</html>

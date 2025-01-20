@@ -1,0 +1,148 @@
+Section1: Création de la base de données
+1. CREATE DATABASE DB_Banque;
+   USE DB_Banque;
+2. 
+CREATE TABLE AGENCE (
+    Num_Agence INT PRIMARY KEY,
+    Nom VARCHAR(100),
+    Ville VARCHAR(100),
+    Actif BOOLEAN
+);
+
+CREATE TABLE CLIENT (
+    Num_Client INT PRIMARY KEY,
+    Nom VARCHAR(100),
+    Ville VARCHAR(100)
+);
+
+CREATE TABLE COMPTE (
+    Num_Compte INT PRIMARY KEY,
+    Num_Agence INT,
+    Num_Client INT,
+    Solde DECIMAL(10, 2),
+    FOREIGN KEY (Num_Agence) REFERENCES AGENCE(Num_Agence),
+    FOREIGN KEY (Num_Client) REFERENCES CLIENT(Num_Client)
+);
+
+CREATE TABLE EMPRUNT (
+    Num_Emprunt INT PRIMARY KEY,
+    Num_Agence INT,
+    Num_Client INT,
+    Montant DECIMAL(10, 2),
+    FOREIGN KEY (Num_Agence) REFERENCES AGENCE(Num_Agence),
+    FOREIGN KEY (Num_Client) REFERENCES CLIENT(Num_Client)
+);
+
+-- Ajouter un enregistrement par table
+INSERT INTO AGENCE VALUES (101,'AG1','Casablanca',True),
+(102,'AG2','Fes',True),
+(103,'AG3','Salé',False),
+(104,'AG4','Casablanca',True),
+(105,'AG5','Rabat',True);
+
+
+INSERT INTO CLIENT VALUES (1,'Byadi','Fes'),
+(2,'Radi','Casablanca'),
+(3,'Bkali','Oujda'),
+(4,'Alami','Casablanca'),
+(5,'Safrioui','Rabat');
+
+
+
+INSERT INTO COMPTE VALUES (10,101,2,1000000),
+(11,104,3,300000), 
+(12,105,1,45000), 
+(13,105,5,2300000);
+
+
+INSERT INTO EMPRUNT VALUES (50,105,1,400000), 
+(51,102,2,25000), 
+(52,105,5,110000), 
+(53,104,1,38000), 
+(54,104,5,120000), 
+(55,104,3,60000);
+
+Section2: Mise à jour des données
+1. UPDATE COMPTE SET Solde = IFNULL(Solde, 0);
+2. UPDATE AGENCE SET Ville = UPPER(Ville);
+3. UPDATE EMPRUNT 
+   SET Montant = Montant * 0.95 
+   WHERE Num_Client IN (SELECT Num_Client FROM CLIENT WHERE Ville =    'Casablanca');
+4. ALTER TABLE COMPTE 
+   ADD CONSTRAINT CHK_Solde CHECK (Solde > 0);
+
+Section3: 
+1. SELECT * FROM CLIENT WHERE Nom LIKE 'B_A%';
+2. SELECT DISTINCT AGENCE.* FROM AGENCE
+JOIN COMPTE ON AGENCE.Num_Agence = COMPTE.Num_Agence;
+3. SELECT * FROM CLIENT
+WHERE Num_Client IN (SELECT Num_Client FROM COMPTE WHERE Num_Agence IN (SELECT Num_Agence FROM AGENCE WHERE Ville = 'CASABLANCA'));
+4. SELECT DISTINCT CLIENT.Num_Client, CLIENT.Nom, CLIENT.Ville
+FROM CLIENT
+JOIN COMPTE ON CLIENT.Num_Client = COMPTE.Num_Client
+JOIN AGENCE ON COMPTE.Num_Agence = AGENCE.Num_Agence
+WHERE AGENCE.Ville = 'Rabat'
+
+UNION
+
+SELECT DISTINCT CLIENT.Num_Client, CLIENT.Nom, CLIENT.Ville
+FROM CLIENT
+JOIN EMPRUNT ON CLIENT.Num_Client = EMPRUNT.Num_Client
+JOIN AGENCE ON EMPRUNT.Num_Agence = AGENCE.Num_Agence
+WHERE AGENCE.Ville = 'Rabat';
+5. SELECT * FROM CLIENT
+WHERE EXISTS (SELECT 1 FROM COMPTE, AGENCE
+              WHERE CLIENT.Num_Client = COMPTE.Num_Client
+              AND COMPTE.Num_Agence = AGENCE.Num_Agence
+              AND CLIENT.Ville = AGENCE.Ville);
+6. SELECT DISTINCT CLIENT.Num_Client, CLIENT.Nom, CLIENT.Ville
+FROM CLIENT
+JOIN COMPTE ON CLIENT.Num_Client = COMPTE.Num_Client
+JOIN EMPRUNT ON CLIENT.Num_Client = EMPRUNT.Num_Client
+WHERE COMPTE.Num_Agence = EMPRUNT.Num_Agence;
+7. SELECT AGENCE.Num_Agence, AGENCE.Nom, AVG(COMPTE.Solde) AS SoldeMoyen
+FROM COMPTE
+JOIN AGENCE ON COMPTE.Num_Agence = AGENCE.Num_Agence
+GROUP BY AGENCE.Num_Agence, AGENCE.Nom;
+8. SELECT AGENCE.Num_Agence, AGENCE.Nom, SUM(COMPTE.Solde) AS TotalSolde
+FROM COMPTE
+JOIN AGENCE ON COMPTE.Num_Agence = AGENCE.Num_Agence
+GROUP BY AGENCE.Num_Agence, AGENCE.Nom;
+9. SELECT CLIENT.Num_Client, CLIENT.Nom, SUM(EMPRUNT.Montant) AS TotalEmprunt
+FROM CLIENT
+JOIN EMPRUNT ON CLIENT.Num_Client = EMPRUNT.Num_Client
+GROUP BY CLIENT.Num_Client, CLIENT.Nom
+ORDER BY TotalEmprunt DESC
+LIMIT 1;
+ Autre Solution:
+SELECT CLIENT.Num_Client, CLIENT.Nom, SUM(EMPRUNT.Montant) AS TotalEmprunt
+FROM CLIENT
+JOIN EMPRUNT ON CLIENT.Num_Client = EMPRUNT.Num_Client
+GROUP BY CLIENT.Num_Client, CLIENT.Nom
+HAVING SUM(EMPRUNT.Montant) = (
+    SELECT MAX(TotalEmprunt) FROM (
+        SELECT SUM(EMPRUNT.Montant) AS TotalEmprunt
+        FROM EMPRUNT
+        GROUP BY EMPRUNT.Num_Client
+    ) AS MaxEmprunt
+);
+10. 
+INSERT INTO EMPRUNT VALUES (56,101,3,10000);
+SELECT CLIENT.Num_Client, CLIENT.Nom
+FROM CLIENT
+JOIN EMPRUNT ON CLIENT.Num_Client = EMPRUNT.Num_Client
+JOIN AGENCE ON EMPRUNT.Num_Agence = AGENCE.Num_Agence
+WHERE AGENCE.Ville = 'Casablanca'
+GROUP BY CLIENT.Num_Client, CLIENT.Nom
+HAVING COUNT(DISTINCT EMPRUNT.Num_Agence) = (
+    SELECT COUNT(DISTINCT Num_Agence) FROM AGENCE WHERE Ville = 'Casablanca'
+);
+
+ 
+
+
+
+
+
+
+

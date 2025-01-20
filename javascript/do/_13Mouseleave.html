@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exemple Mouseleave avec Parent et Enfants</title>
+    <style>
+        .parent {
+            width: 300px;
+            height: 300px;
+            background-color: lightgreen;
+            padding: 20px;
+            position: relative;
+        }
+
+        .child {
+            height: 100px;
+            background-color: lightblue;
+            margin-top: 10px;
+        }
+
+        .grandchild {
+            height: 50px;
+            background-color: coral;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="parent" id="mouseleaveParent">
+        Parent
+        <div class="child" id="mouseleaveChild1">
+            Enfant 1
+            <div class="grandchild" id="mouseleaveGrandchild">Petit-enfant</div>
+        </div>
+        <div class="child" id="mouseleaveChild2">Enfant 2</div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.parent, .child, .grandchild').forEach(element => {
+            element.addEventListener('mouseleave', function (e) {
+                console.log(`mouseleave déclenché par ${e.currentTarget.className}: ${e.currentTarget.textContent.trim()}`);
+                e.stopPropagation(); // Pour éviter la propagation aux éléments parents
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exemple Mouseout avec Parent et Enfants</title>
+    <style>
+        .parent {
+            width: 300px;
+            height: 300px;
+            background-color: lightcoral;
+            padding: 20px;
+            position: relative;
+        }
+
+        .child {
+            height: 100px;
+            background-color: lightblue;
+            margin-top: 10px;
+        }
+
+        .grandchild {
+            height: 50px;
+            background-color: lightgreen;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="parent" id="mouseoutParent">
+        Parent
+        <div class="child" id="mouseoutChild1">
+            Enfant 1
+            <div class="grandchild" id="mouseoutGrandchild">Petit-enfant</div>
+        </div>
+        <div class="child" id="mouseoutChild2">Enfant 2</div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.parent, .child, .grandchild').forEach(element => {
+            element.addEventListener('mouseout', function (e) {
+                console.log(`mouseout déclenché par ${e.currentTarget.className}: ${e.currentTarget.textContent.trim()}`);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

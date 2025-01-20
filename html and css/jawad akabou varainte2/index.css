@@ -1,0 +1,137 @@
+.circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    margin-right: 10px;
+}
+a {
+    text-decoration: none;
+}
+li {
+    list-style: none;
+}
+/* start header  */
+header {
+    position: relative;
+}
+header div {
+    position: relative;
+}
+header div h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+/* end header  */
+
+
+/* start nav  */
+nav {
+    background-color: black;
+    position: relative;
+}
+nav .links {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    height: 55px;
+}
+nav .links li a {
+    color: white;
+    padding: 0 0 0 16px;
+}
+nav .links i {
+    color: rgb(0, 0, 0);
+    padding: 5px;
+    background-color: white;
+    border-radius: 100px;
+}
+/* end nav  */
+
+
+
+/* start section  */
+section {
+    position: relative;
+}
+section .container {
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+section .container .box {
+    border: 1px dashed black;
+    padding: 10px;
+}
+section .container .box p {
+    padding-left: 10px;
+    padding-right: 15px;
+}
+
+section .container .box div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 13px;
+}
+section .container .box div img {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+section .container .box  div h1 {
+    display: flex;
+}
+
+
+.buttons {
+    padding-top: 10px;
+}
+.buttons div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttons div .inside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+.buttons div .inside input {
+    padding: 10px 185px 10px 185px;
+    background-color: #ababab;
+    border-radius: 5px;
+    border: none;
+}
+/* end section  */
+
+
+
+/* start footer  */
+footer {
+    position: relative;
+}
+footer .inside-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ababab;
+    margin-top: 10px;
+    padding: 10px;
+}
+footer .inside-footer a {
+    margin-left: 10px;
+    color: black;
+}
+/* end footer  */

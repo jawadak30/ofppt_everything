@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="efm.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h1>liste des joueurs</h1>
+            <label for="">code</label>
+            <input type="text" id="code">
+            <label for="">nom</label>
+            <input type="text" id="name">
+            <label for="">prénom</label>
+            <input type="text" id="prenom">
+            <label for="">numéro</label>
+            <input type="text" id="nombre">
+            <label for="">equipe</label>
+            <input type="text" id="equipe">
+            <div class="button">
+                <input type="button" value="savegarder" onclick="sauvegarder()">
+                <input type="button" value="annuler">
+                <input type="reset" value="vider">
+            </div>
+        </div>
+        <div class="box1">
+            <table id="table" border="1">
+                <th>
+                    <td>code</td>
+                    <td>nom</td>
+                    <td>prénom</td>
+                    <td>numéro</td>
+                    <td>equipe</td>
+                </th>
+            </table>
+            <div class="button">
+                <input type="button" value="ajouter">
+                <input type="button" value="supprimer">
+            </div>
+        </div>
+    </div>
+    <script src="efm.js"></script>
+</body>
+</html>
